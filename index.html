@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operating Systems - 6 Marks Answers</title>
+    <link rel="stylesheet" href="styles.css">    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+           
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #005f6b;
+            margin-top: 20px;
+        }
+        p {
+            margin: 10px 0;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#unit3" class="glow-button">Unit 3</a></li>
+            <li><a href="#unit4" class="glow-button">Unit 4</a></li>
+        </ul>
+    </nav>
+
+    <section id="unit3">
+        <h2>Unit 3 - Topics</h2>
+
+        <div class="topic">
+            <h3>Bounded Buffer Producer Consumer</h3>
+            <p>Bounded buffer problem ek classical synchronization problem hai jo concurrent systems mein hoti hai, jisme ek buffer limited size ka hota hai. Producer process data generate karta hai aur consumer process us data ko consume karta hai. Agar buffer full ho gaya, toh producer ko wait karna padta hai jab tak consumer buffer se kuch data consume na kare. Agar buffer empty hai, toh consumer ko wait karna padta hai jab tak producer kuch data na dale. Isme critical section ke problem ko solve karne ke liye mutex lock aur semaphores ka use kiya jata hai. Semaphores 'empty' aur 'full' represent karte hain buffer ke state ko, aur mutex ensure karta hai ki ek hi process ek samay par buffer ko modify kar sake. Yeh producer-consumer synchronization model operating systems aur real-time systems mein use hota hai.</p>
+            <img src="https://files.prepinsta.com/2023/01/Bound-buffer-problem-1024x537.webp" alt="Bounded Buffer" />
+            <a href="https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem">More Info</a>
+        </div>
+
+        <div class="topic">
+            <h3>Peterson's Solution</h3>
+            <p>Peterson's solution ek software-based algorithm hai jo mutual exclusion ko solve karta hai bina hardware support ke. Yeh algorithm do processes ko alternating manner mein critical section access karne ke liye enable karta hai. Isme do flags aur ek turn variable ka use hota hai. Har process apne flag ko true set karta hai jab wo critical section mein enter karna chahta hai. Turn variable ensure karta hai ki agar dono processes enter karna chahein, toh ek ko priority mile. Is approach ka fayda yeh hai ki yeh simple aur effective hai do processes ke liye, lekin drawbacks yeh hain ki yeh modern multi-core processors mein practical nahi hota kyunki yeh busy-waiting ke issue ko solve nahi karta.</p>
+            <img src="https://scaler.com/topics/images/what-is-petersons-solution-is-os.webp" alt="Peterson's Solution Diagram" />
+            <a href="https://en.wikipedia.org/wiki/Peterson%27s_algorithm">More Info</a>
+        </div>
+
+        <div class="topic">
+            <h3>Mutex and Semaphore Difference</h3>
+            <p>Mutex aur semaphore dono synchronization tools hain lekin unme kuch key differences hain. Mutex ek locking mechanism hai jo ek time par ek thread ko resource access karne deta hai. Ek baar jab resource lock ho jata hai, doosre threads ko wait karna padta hai jab tak resource unlock nahi hota. Isme ek ownership concept hota hai, jisme sirf wo thread jo lock acquire karta hai, usi ko resource release karne ka haq hota hai. Semaphore ek signaling mechanism hai jisme counting hoti hai. Counting semaphore ek time par multiple threads ko access karne deta hai jab tak maximum count limit cross nahi hoti. Mutex ko sirf mutual exclusion ke liye use kiya jata hai, jabki semaphore multiple conditions ko handle kar sakta hai jaise resource counting.</p>
+            
+            <a href="https://www.geeksforgeeks.org/mutex-vs-semaphore/">More Info</a>
+        </div>
+
+        <div class="topic">
+            <h3>Reader's Writer Problem</h3>
+            <p>Reader-Writer problem ek synchronization issue hai jisme multiple processes ek shared resource access karte hain. Readers ko read karne ke liye koi interference nahi chahiye, lekin writer ko resource ko exclusive access chahiye kyunki wo resource ko modify kar raha hota hai. Problem yeh hai ki agar multiple writers ek hi resource ko modify karein, toh data corruption ho sakti hai. Yeh problem kaafi common hai file systems aur databases mein. Iska solution ek balanced priority policy hai jisme ya toh readers ko zyada priority di jaati hai ya writers ko. Agar readers ko zyada priority di jati hai toh writers starvation face kar sakte hain aur vice versa.</p>
+            <img src="https://prepbytes-misc-images.s3.ap-south-1.amazonaws.com/assets/1678856087244-1-01%20%2817%29.png" alt="Readers Writer Problem" />
+            <a href="https://en.wikipedia.org/wiki/Readers%E2%80%93writers_problem">More Info</a>
+        </div>
+
+        <div class="topic">
+            <h3>Deadlock Prevention, Avoidance, and Occurrence</h3>
+            <p>Deadlock ek aisi condition hai jisme multiple processes ek doosre ke resources ka wait karte hue stuck ho jaate hain, aur koi process progress nahi kar pata. Deadlock ke chaar conditions hote hain: Mutual Exclusion, Hold and Wait, No Preemption, aur Circular Wait. Prevention ke liye OS ko in conditions ko avoid karna hota hai. Deadlock avoidance algorithms, jaise Banker's algorithm, ensure karte hain ki system safe state mein ho tabhi resources allocate kiye jayein. Deadlock occurrence ka matlab hai ki deadlock ho chuka hai, aur usse detect karke resolve karna padta hai by preemption ya process termination. OS ka design aise hona chahiye ki deadlocks na hoon.</p>
+          
+            <a href="https://www.geeksforgeeks.org/deadlock-in-operating-system/">More Info</a>
+        </div>
+
+        <div class="topic">
+            <h3>Banker's Algorithm</h3>
+            <p>Banker's algorithm ek deadlock avoidance technique hai jo system ko safe state mein maintain karta hai. Jab koi process additional resources request karta hai, system check karta hai ki agar resources allocate karne ke baad bhi system safe rahega ya nahi. Agar haan, toh resources allocate kiye jaate hain. Agar nahi, toh process ko wait karaya jaata hai. Yeh algorithm dynamic allocation ke liye use hota hai, jisme multiple processes ko resources demand karna hota hai without causing deadlocks. Lekin yeh algorithm tabhi effective hota hai jab resource requests pehle se known hoon aur system ko uski full allocation information ho.</p>
+            <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/gq/2016/01/safety.png" alt="Banker's Algorithm" />
+            <a href="https://en.wikipedia.org/wiki/Banker%27s_algorithm">More Info</a>
+        </div>
+    </section>
+
+    <section id="unit4">
+        <h2>Unit 4 - Topics</h2>
+    
+        <div class="topic">
+            <h3>Memory Management</h3>
+            <p>Memory management ek critical function hai jo OS ko processes ke liye memory ko allocate aur deallocate karne ke liye responsible banata hai. Isme memory fragmentation aur swapping jaisi problems ka solution nikalna hota hai. OS physical memory ko manage karta hai jisse virtual memory mein swap karna hota hai jab demand zyada hoti hai. Techniques jaise paging aur segmentation ka use hota hai taaki memory ko efficiently utilize kiya ja sake. Memory allocation dynamic hota hai taaki zyada fragmentation na ho aur processes fast execute kar sakein.</p>
+            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221116104505/1white-660x453.png" alt="Memory Management" />
+            <a href="https://www.javatpoint.com/os-memory-management">More Info</a>
+        </div>
+    
+        <div class="topic">
+            <h3>Swapping</h3>
+            <p>Swapping ek aisi technique hai jo processes ko memory se disk par temporarily shift karta hai jab primary memory ki shortage hoti hai. Jab ek process ko swap out kiya jata hai, uska execution suspend ho jata hai aur jab usse swap in kiya jata hai toh execution resume ho jata hai. Swapping ko CPU utilization aur process management ko optimize karne ke liye kiya jata hai, lekin frequent swapping system performance ko degrade kar sakta hai. Is technique ko swapping daemons ya memory management unit handle karti hai, jo processes ko load aur unload karne ke liye responsible hote hain.</p>
+            <img src="https://lh4.googleusercontent.com/ISx3q1vjwytuAyehzREYzLqKytn-KLqEb4Dw5kW0yNIKfECTUpETXAWfUp5FHGvbyx6SnO8MD7ysSJYnlY9LjppFm0elS3dQbk7LDLmJEICK_-J61ZX4su6DaozFxBY4wx-k9Q4PkKsLLIFewr4PJ8s" alt="Swapping" />
+            <a href="https://www.studytonight.com/operating-system/swapping">More Info</a>
+        </div>
+    
+        <div class="topic">
+            <h3>Contiguous and Non-Contiguous Memory Allocation</h3>
+            <p>Contiguous memory allocation mein ek process ko ek single continuous block allocate kiya jata hai. Is approach se searching aur accessing fast hota hai, lekin fragmentation ka issue hota hai. Non-contiguous memory allocation mein process ka data multiple blocks mein stored hota hai jo ek dusre ke sath connected nahi hote, jaise paging or segmentation. Non-contiguous allocation zyada flexible hota hai lekin management aur overhead zyada hota hai. OS ko har time memory block ka track rakhna padta hai, aur page table maintain karna padta hai.</p>
+            <img src="https://www.poriyaan.in/media/imgPori/images51/R08TveO.jpg" alt="Contiguous and Non-Contiguous Memory Allocation" />
+            <a href="https://www.javatpoint.com/memory-allocation-in-os">More Info</a>
+        </div>
+    
+        <div class="topic">
+            <h3>Paging and Demand Paging</h3>
+            <p>Paging ek memory management scheme hai jo physical memory ko fixed-sized blocks mein divide karti hai jise pages kehte hain. Har process ko virtual address space allocate hota hai jise pages mein map kiya jata hai. Pages ko physical memory ke frames mein load kiya jata hai jab process execute hoti hai. Demand paging ek advanced technique hai jisme pages ko tabhi memory mein load kiya jata hai jab wo required hoti hain. Isse memory wastage kam hota hai aur efficiency badhti hai, lekin demand paging ke sath page fault ka risk badh jata hai jo performance slow kar sakta hai.</p>
+            <img src="https://i.ytimg.com/vi/eWRnKH5IMNg/maxresdefault.jpg" alt="Paging and Demand Paging" />
+            <a href="https://www.geeksforgeeks.org/paging-in-operating-system/">More Info</a>
+        </div>
+    
+        <div class="topic">
+            <h3>Segmentation</h3>
+            <p>Segmentation ek memory management technique hai jisme memory ko variable-sized segments mein divide kiya jata hai based on logical divisions jaise code, data, stack. Har segment ka apna base aur limit hota hai. Yeh approach process ke logical structure ko match karta hai aur memory ko efficiently use karta hai. Lekin, segmentation mein external fragmentation hoti hai kyunki segments ka size fixed nahi hota. OS ko har segment ka track rakhna padta hai aur unke addresses ko translate karna padta hai.</p>
+            <img src="https://almablog-media.s3.ap-south-1.amazonaws.com/003_ae43c4bec8.png" alt="Segmentation" />
+            <a href="https://www.geeksforgeeks.org/segmentation-in-os/">More Info</a>
+        </div>
+    
+        <div class="topic">
+            <h3>Paging vs Segmentation</h3>
+            <p>Paging aur segmentation dono memory management techniques hain, lekin inme kuch key differences hain. Paging mein memory ko fixed-sized pages mein divide kiya jata hai, jabki segmentation mein memory logical segments mein hoti hai jo size-wise variable hote hain. Paging external fragmentation ko avoid karta hai lekin internal fragmentation ka risk hota hai. Segmentation mein external fragmentation hoti hai lekin internal fragmentation nahi hoti. Paging ko performance aur simplicity ke liye prefer kiya jata hai, lekin segmentation flexibility aur logical division ke liye zyada useful hota hai.</p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUHfpk4MSemVoZ4MvVF5H8fUn58bdqz94Bbg&s" alt="Paging vs Segmentation" />
+            <a href="https://www.geeksforgeeks.org/difference-between-paging-and-segmentation/">More Info</a>
+        </div>
+    
+        <div class="topic">
+            <h3>Page Replacement Algorithms</h3>
+            <p>Page replacement algorithms tab use hote hain jab memory full ho jati hai aur ek new page ko memory mein load karne ke liye ek existing page ko replace karna padta hai. Common algorithms mein FIFO (First In First Out), LRU (Least Recently Used), aur Optimal Page Replacement include hain. FIFO mein sabse pehle aaya hua page replace hota hai. LRU mein wo page replace hota hai jo sabse kam recently use hua hai. Optimal replacement future ke references ke basis par decide karta hai, lekin practically wo implement nahi kiya jata.</p>
+            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230519223827/finL.png" alt="Page Replacement Algorithms" />
+            <a href="https://www.javatpoint.com/os-page-replacement-algorithms">More Info</a>
+        </div>
+    
+        <div class="topic">
+            <h3>Thrashing</h3>
+            <p>Thrashing ek aisi situation hai jisme system excessive paging mein busy ho jata hai aur CPU utilization drastically drop ho jata hai. Jab system zyada pages ko swap karne lagta hai aur processes continuously page faults generate karte hain, toh thrashing hoti hai. Isse system slow ho jata hai aur performance degrade hoti hai. Thrashing ko avoid karne ke liye OS ko system workload ko balance karna hota hai aur appropriate page replacement policy follow karni hoti hai.</p>
+            <img src="https://scaler.com/topics/images/Thrashing-in-OS-1.webp" alt="Thrashing" />
+            <a href="https://en.wikipedia.org/wiki/Thrashing_(computer_science)">More Info</a>
+        </div>
+    
+        <div class="topic">
+            <h3>Virtual Memory</h3>
+            <p>Virtual memory ek technique hai jo physical memory se zyada memory ko simulate karne ke liye use hoti hai. Isme OS secondary storage (disk) ko primary memory ke ek extension ke roop mein use karta hai, jisse processes apne virtual address space ka use kar sakein. Virtual memory paging aur segmentation ke sath implement ki jati hai. Iska fayda yeh hai ki processes physical memory ki limit se bade banaye ja sakte hain, lekin iska drawback yeh hai ki disk access slow hota hai jo overall system performance ko affect kar sakta hai.</p>
+            <img src="https://www.sitesbay.com/os/images/virtual-memory-in-os-operating-system.png" alt="Virtual Memory" />
+            <a href="https://www.geeksforgeeks.org/virtual-memory-in-operating-system/">More Info</a>
+        </div>
+    </section>
+    
+    <footer>
+        <p class="footer-disclaimer">𝗔𝗚𝗔𝗥 𝗣𝗛𝗜𝗥 𝗕𝗛𝗜 𝗧𝗨𝗠𝗞𝗢 𝗧𝗢𝗣𝗜𝗖𝗦 𝗡𝗔𝗛𝗜 𝗦𝗔𝗠𝗝𝗘 𝗧𝗢 𝗩𝗢 𝗧𝗨𝗠𝗔𝗥𝗜 𝗚𝗔𝗟𝗧𝗜 𝗛𝗔𝗜</p>
+    </footer>
+    
